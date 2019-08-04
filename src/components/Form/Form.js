@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Field from '../Field';
 import './Form.css';
 import Bond from './assets/bond_approve.jpg';
 
@@ -63,8 +64,8 @@ export default class Form extends Component {
   }
 
   submitHandler = e => {
-    const { isValid } = this.state;
     e.preventDefault();
+    const { isValid } = this.state;
     this.setValidation();
 
     if (!isValid) {
@@ -79,14 +80,12 @@ export default class Form extends Component {
       if (fields[field].value === '') {
         this.setError(field, validationMessage[field].empty);
         this.setIsValid(false);
-
       } else if (
         fields[field].value !== '' &&
         fields[field].value !== defaultUser[field]
       ) {
         this.setError(field, validationMessage[field].error);
         this.setIsValid(false);
-        
       } else {
         this.setIsValid(true);
       }
@@ -110,48 +109,27 @@ export default class Form extends Component {
         ) : (
           <form className="form" onSubmit={this.submitHandler}>
             <h1>Введите свои данные, агент</h1>
-            <p className="filed">
-              <label htmlFor="firstname" className="field__label">
-                <span className="field-label">Имя</span>
-              </label>
-              <input
-                className="field__input field-input t-input-firstname"
-                type="text"
-                name="firstname"
-                onChange={this.changeHandler}
-              />
-              <span className="field__error field-error t-error-firstname">
-                {firstname.error}
-              </span>
-            </p>
-            <p className="filed">
-              <label htmlFor="lastname" className="field__label">
-                <span className="field-label">Фамилия</span>
-              </label>
-              <input
-                className="field__input field-input t-input-lastname"
-                type="text"
-                name="lastname"
-                onChange={this.changeHandler}
-              />
-              <span className="field__error field-error t-error-lastname">
-                {lastname.error}
-              </span>
-            </p>
-            <p className="filed">
-              <label htmlFor="password" className="field__label">
-                <span className="field-label">Пароль</span>
-              </label>
-              <input
-                className="field__input field-input t-input-password"
-                type="password"
-                name="password"
-                onChange={this.changeHandler}
-              />
-              <span className="field__error field-error t-error-password">
-                {password.error}
-              </span>
-            </p>
+            <Field 
+              label="Имя"
+              name="firstname"
+              type="text"
+              onChange={this.changeHandler}
+              error={firstname.error}
+            />
+            <Field 
+              label="Фамилия"
+              name="lastname"
+              type="text"
+              onChange={this.changeHandler}
+              error={lastname.error}
+            />
+             <Field 
+              label="Пароль"
+              name="password"
+              type="password"
+              onChange={this.changeHandler}
+              error={password.error}
+            />
             <div className="form__buttons">
               <input
                 type="submit"

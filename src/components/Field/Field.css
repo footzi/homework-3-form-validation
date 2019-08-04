@@ -1,0 +1,17 @@
+.field {
+  margin: 0;
+}
+
+.field__error {
+  display: block;
+  height: 13px;
+  padding: 2px 0 5px 90px;
+  padding-bottom: 5px;
+  padding-left: 90px;
+}
+
+.field-error {
+  color: red;
+  font-size: 13px;
+  line-height: 13px;
+}
